@@ -63,3 +63,26 @@ add(array $data) // добавление элемента
 delete($primary) // удаление элемента по ID
 update($primary, array $data) // обновление элемента по ID
 </pre>
+<h2>Примеры</h2>
+<h3>Инфоблок и его свойства</h3>
+<pre>
+$arIblock = \Bitrix\Iblock\IblockTable::getList(array(
+	'filter' => array('CODE' => 'news'),
+))->fetch();
+
+$arProps = \Bitrix\Iblock\PropertyTable::getList(array(
+	'select' => array('*'),
+	'filter' => array('IBLOCK_ID' => $arIblock['ID'])
+))->fetchAll();
+</pre>
+<h3>Значения определенного свойства типа список</h3>
+<pre>
+$dbEnums = \Bitrix\Iblock\PropertyEnumerationTable::getList(array(
+	'order' => array('SORT' => 'asc'),
+	'select' => array('*'),
+	'filter' => array('PROPERTY_ID' => $arIblockProp['ID'])
+));
+while($arEnum = $dbEnums->fetch()) {
+	$arIblockProp['ENUM_LIST'][$arEnum['ID']] = $arEnum;
+}
+</pre>
