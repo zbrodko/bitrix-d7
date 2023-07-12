@@ -1,9 +1,10 @@
 ﻿# Bitrix D7 на примере инфоблоков
-
+ <h3>Подключаем модуль</h3>
+<pre>
 \Bitrix\Main\Loader::includeModule('iblock');
-
-# Делаем запрос в таблицу элементов инфоблока.
-
+</pre>
+<h3> Делаем запрос в таблицу элементов инфоблока.</h3>
+<pre>
 $dbItems = \Bitrix\Iblock\ElementTable::getList(array(
 	'order' => array('SORT' => 'ASC'), // сортировка
 	'select' => array('ID', 'NAME', 'IBLOCK_ID', 'SORT', 'TAGS'), // выбираемые поля, без свойств. Свойства можно получать на старом ядре \CIBlockElement::getProperty
@@ -19,16 +20,16 @@ $dbItems = \Bitrix\Iblock\ElementTable::getList(array(
 		'cache_joins' => true // Кешировать ли выборки с JOIN
 	),
 ));
-
-# Что можно сделать с $dbItems?
-
+</pre>
+<h3>Что можно сделать с $dbItems?</h3>
+<pre>
 $dbItems->fetch(); // или $dbItems->fetchRaw() получение одной записи, можно перебрать в цикле while ($arItem = $dbItems->fetch())
 $dbItems->fetchAll(); // получение всех записей
 $dbItems->getCount(); // кол-во найденных записей без учета limit, доступно если при запросе было указано count_total = 1
 $dbItems->getSelectedRowsCount(); // кол-во полученных записей с учетом limit
-
-# В какие таблицы инфоблоков можно делать запросы
-
+</pre>
+<h3>В какие таблицы инфоблоков можно делать запросы</h3>
+<pre>
 \Bitrix\Iblock\TypeTable::getList(); // типы инфоблоков
 \Bitrix\Iblock\IblockTable::getList(); // инфоблоки
 \Bitrix\Iblock\PropertyTable::getList(); // свойства инфоблоков
@@ -38,9 +39,9 @@ $dbItems->getSelectedRowsCount(); // кол-во полученных запис
 \Bitrix\Iblock\ElementTable::getList(); // Элементы инфоблоков 
 \Bitrix\Iblock\ElementPropertyTable::getList() // Значения свойств элементов
 \Bitrix\Iblock\InheritedPropertyTable::getList(); // Наследуемые свойства (seo шаблоны)
-
-# Помимо getList можно использовать другие методы
-
+</pre>
+<h3>Помимо getList можно использовать другие методы</h3>
+<pre>
 checkFields(Result $result, $primary, array $data) // метод проверяет поля данных перед записью в БД.
 getById($id) // получение элемента по ID
 getByPrimary($primary, array $parameters = array()) // метод возвращает выборку по первичному ключу сущности и по опциональным параметрам \Bitrix\Main\Entity\DataManager::getList.
@@ -61,3 +62,4 @@ updateMulti($primaries, $data, $ignoreEvents = false)
 add(array $data) // добавление элемента
 delete($primary) // удаление элемента по ID
 update($primary, array $data) // обновление элемента по ID
+</pre>
