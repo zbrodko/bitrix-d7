@@ -86,3 +86,16 @@ while($arEnum = $dbEnums->fetch()) {
 	$arIblockProp['ENUM_LIST'][$arEnum['ID']] = $arEnum;
 }
 </pre>
+<h3>
+<pre>
+	$entity = \Bitrix\Iblock\Model\Section::compileEntityByIblock($iblockId);
+$dbSect = $entity::getList(array(
+	"select" => ["UF_POP_BRANDS", 'UF_R_NAME'], // пользовательские поля
+	"filter" => ['ID' => $sectionId],
+	"cache"  => ['ttl' => 36000],
+));
+if ($arSect = $dbSect->fetch()) {
+	var_dump($arSect["UF_POP_BRANDS"]);
+}
+</pre>
+</h3>
