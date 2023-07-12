@@ -86,7 +86,7 @@ while($arEnum = $dbEnums->fetch()) {
 	$arIblockProp['ENUM_LIST'][$arEnum['ID']] = $arEnum;
 }
 </pre>
-<h3>
+<h3>Получения пользовательских полей раздела</h3>
 <pre>
 	$entity = \Bitrix\Iblock\Model\Section::compileEntityByIblock($iblockId);
 $dbSect = $entity::getList(array(
