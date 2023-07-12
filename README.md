@@ -88,7 +88,7 @@ while($arEnum = $dbEnums->fetch()) {
 </pre>
 <h3>Получения пользовательских полей раздела</h3>
 <pre>
-	$entity = \Bitrix\Iblock\Model\Section::compileEntityByIblock($iblockId);
+$entity = \Bitrix\Iblock\Model\Section::compileEntityByIblock($iblockId);
 $dbSect = $entity::getList(array(
 	"select" => ["UF_POP_BRANDS", 'UF_R_NAME'], // пользовательские поля
 	"filter" => ['ID' => $sectionId],
